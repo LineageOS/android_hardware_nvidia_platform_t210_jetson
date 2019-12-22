@@ -42,6 +42,7 @@
 		dc@54240000 {
 			nvidia,dc-or-node = "/host1x/sor1";
 			nvidia,dc-connector = <&sor1>;
+			win-mask = <0xf>;
 		};
 
 		dsi {
