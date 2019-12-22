@@ -17,6 +17,23 @@
 / {
 	nvidia,dtsfilename = __FILE__;
 
+	firmware {
+		android {
+			first_stage_delay = "1";
+			system_root_blkdev = "/dev/mmcblk0p19";
+			fstab {
+				compatible = "android,fstab";
+				vendor {
+					compatible = "android,vendor";
+					dev = "/dev/block/platform/sdhci-tegra.3/by-name/vendor";
+					type = "ext4";
+					mnt_flags = "ro,noatime";
+					fsmgr_flags = "wait";
+				};
+			};
+		};
+	};
+
 	host1x {
 		dc@54200000 {
 			status = "disabled";
