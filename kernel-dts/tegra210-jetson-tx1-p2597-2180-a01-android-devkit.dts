@@ -17,6 +17,11 @@
 / {
 	nvidia,dtsfilename = __FILE__;
 
+	chosen {
+		nvidia,bootloader-xusb-enable;
+		firmware-blob-partition = "RP4";
+	};
+
 	firmware {
 		android {
 			first_stage_delay = "1";
