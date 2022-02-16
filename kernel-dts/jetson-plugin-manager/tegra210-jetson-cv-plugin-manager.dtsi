@@ -262,7 +262,7 @@
 			/* E3320 DSI connector */
 			ids = "3320-1000-*", "3320-1100-000";
 			overrides@1 {
-				target = <&{/host1x}>;
+				target = <&{/host1x@50000000}>;
 				_overlay_ {
 					dc@54200000 {
 						/* dc.0 */

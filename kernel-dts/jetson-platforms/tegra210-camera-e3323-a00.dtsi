@@ -19,7 +19,7 @@
 #include <dt-bindings/platform/t210/t210.h>
 
 / {
-	host1x {
+	host1x@50000000 {
 		vi {
 			num-channels = <2>;
 			ports {
@@ -357,7 +357,7 @@ e3323_lens_ov23850@CH06P1 {
 					/* Driver v4l2 device name */
 					devname = "ov23850 6-0010";
 					/* Declare the device-tree hierarchy to driver instance */
-					proc-device-tree = "/proc/device-tree/host1x/i2c@546c0000/ov23850_a@10";
+					proc-device-tree = "/proc/device-tree/host1x@50000000/i2c@546c0000/ov23850_a@10";
 				};
 				drivernode1 {
 					/* Declare PCL support driver (classically known as guid)  */

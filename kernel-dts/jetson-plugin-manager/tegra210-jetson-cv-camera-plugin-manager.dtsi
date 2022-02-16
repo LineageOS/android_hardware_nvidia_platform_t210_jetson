@@ -39,7 +39,7 @@
 					status = "okay";
 					pcl_id = "v4l2_sensor";
 					devname = "ov5693 6-0036";
-					proc-device-tree = "/proc/device-tree/host1x/i2c@546c0000/ov5693_c@36";
+					proc-device-tree = "/proc/device-tree/host1x@50000000/i2c@546c0000/ov5693_c@36";
 				};
 			};
 			override@3 {
@@ -153,7 +153,7 @@
 					status = "okay";
 					pcl_id = "v4l2_sensor";
 					devname = "ov23850 6-0010";
-					proc-device-tree = "/proc/device-tree/host1x/i2c@546c0000/ov23850_a@10";
+					proc-device-tree = "/proc/device-tree/host1x@50000000/i2c@546c0000/ov23850_a@10";
 				};
 			};
 			/* enable E3323 camera 1 */
@@ -388,7 +388,7 @@
 					status = "okay";
 					pcl_id = "v4l2_sensor";
 					devname = "ov5693 30-0036";
-					proc-device-tree = "/proc/device-tree/host1x/i2c@546c0000/tca9548@77/i2c@0/ov5693_a@36";
+					proc-device-tree = "/proc/device-tree/host1x@50000000/i2c@546c0000/tca9548@77/i2c@0/ov5693_a@36";
 				};
 			};
 			override@8 {
@@ -472,7 +472,7 @@
 					status = "okay";
 					pcl_id = "v4l2_sensor";
 					devname = "ov5693 31-0036";
-					proc-device-tree = "/proc/device-tree/host1x/i2c@546c0000/tca9548@77/i2c@1/ov5693_b@36";
+					proc-device-tree = "/proc/device-tree/host1x@50000000/i2c@546c0000/tca9548@77/i2c@1/ov5693_b@36";
 				};
 			};
 			override@19 {
@@ -556,7 +556,7 @@
 					status = "okay";
 					pcl_id = "v4l2_sensor";
 					devname = "ov5693 32-0036";
-					proc-device-tree = "/proc/device-tree/host1x/i2c@546c0000/tca9548@77/i2c@2/ov5693_c@36";
+					proc-device-tree = "/proc/device-tree/host1x@50000000/i2c@546c0000/tca9548@77/i2c@2/ov5693_c@36";
 				};
 			};
 			override@30 {
@@ -640,7 +640,7 @@
 					status = "okay";
 					pcl_id = "v4l2_sensor";
 					devname = "ov5693 33-0036";
-					proc-device-tree = "/proc/device-tree/host1x/i2c@546c0000/tca9548@77/i2c@3/ov5693_d@36";
+					proc-device-tree = "/proc/device-tree/host1x@50000000/i2c@546c0000/tca9548@77/i2c@3/ov5693_d@36";
 				};
 			};
 			override@41 {
@@ -724,7 +724,7 @@
 					status = "okay";
 					pcl_id = "v4l2_sensor";
 					devname = "ov5693 34-0036";
-					proc-device-tree = "/proc/device-tree/host1x/i2c@546c0000/tca9548@77/i2c@4/ov5693_e@36";
+					proc-device-tree = "/proc/device-tree/host1x@50000000/i2c@546c0000/tca9548@77/i2c@4/ov5693_e@36";
 				};
 			};
 			override@52 {
@@ -808,7 +808,7 @@
 					status = "okay";
 					pcl_id = "v4l2_sensor";
 					devname = "ov5693 35-0036";
-					proc-device-tree = "/proc/device-tree/host1x/i2c@546c0000/tca9548@77/i2c@5/ov5693_f@36";
+					proc-device-tree = "/proc/device-tree/host1x@50000000/i2c@546c0000/tca9548@77/i2c@5/ov5693_f@36";
 				};
 			};
 			override@63 {
@@ -922,7 +922,7 @@
 					status = "okay";
 					pcl_id = "v4l2_sensor";
 					devname = "imx185 30-001a";
-					proc-device-tree = "/proc/device-tree/host1x/i2c@546c0000/tca9546@70/i2c@0/imx185_a@1a";
+					proc-device-tree = "/proc/device-tree/host1x@50000000/i2c@546c0000/tca9546@70/i2c@0/imx185_a@1a";
 				};
 			};
 			override@3 {
@@ -1040,7 +1040,7 @@
 					status = "okay";
 					pcl_id = "v4l2_sensor";
 					devname = "imx274 30-001a";
-					proc-device-tree = "/proc/device-tree/host1x/i2c@546c0000/tca9546@70/i2c@0/imx274_a@1a";
+					proc-device-tree = "/proc/device-tree/host1x@50000000/i2c@546c0000/tca9546@70/i2c@0/imx274_a@1a";
 				};
 			};
 			override@3 {

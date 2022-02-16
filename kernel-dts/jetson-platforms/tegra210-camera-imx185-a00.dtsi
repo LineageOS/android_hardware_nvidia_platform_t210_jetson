@@ -19,7 +19,7 @@
 #include <dt-bindings/platform/t210/t210.h>
 
 / {
-	host1x {
+	host1x@50000000 {
 		vi {
 			num-channels = <1>;
 			ports {
@@ -461,7 +461,7 @@
 					/* Driver v4l2 device name */
 					devname = "imx185 30-001a";
 					/* Declare the device-tree hierarchy to driver instance */
-					proc-device-tree = "/proc/device-tree/host1x/i2c@546c0000/tca9546@70/i2c@0/imx185_a@1a";
+					proc-device-tree = "/proc/device-tree/host1x@50000000/i2c@546c0000/tca9546@70/i2c@0/imx185_a@1a";
 				};
 			};
 		};
