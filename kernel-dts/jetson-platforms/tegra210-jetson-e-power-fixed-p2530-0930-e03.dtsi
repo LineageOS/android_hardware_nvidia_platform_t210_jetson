@@ -35,7 +35,7 @@
 		};
 
 		vdd_3v3: regulator@1 {
-			compatible = "regulator-fixed-sync";
+			compatible = "regulator-fixed-sync", "regulator-fixed";
 			reg = <1>;
 			regulator-name = "vdd-3v3";
 			regulator-min-microvolt = <3300000>;
@@ -46,7 +46,7 @@
 		};
 
 		max77620_gpio7: regulator@2 {
-			compatible = "regulator-fixed-sync";
+			compatible = "regulator-fixed-sync", "regulator-fixed";
 			reg = <2>;
 			regulator-name = "max77620-gpio7";
 			regulator-min-microvolt = <1200000>;
@@ -58,7 +58,7 @@
 		};
 
 		lcd_bl_en: regulator@3 {
-			compatible = "regulator-fixed-sync";
+			compatible = "regulator-fixed-sync", "regulator-fixed";
 			reg = <3>;
 			regulator-name = "lcd-bl-en";
 			regulator-min-microvolt = <1800000>;
@@ -69,7 +69,7 @@
 		};
 
 		en_vdd_sd: regulator@4 {
-			compatible = "regulator-fixed-sync";
+			compatible = "regulator-fixed-sync", "regulator-fixed";
 			reg = <4>;
 			regulator-name = "en-vdd-sd";
 			regulator-min-microvolt = <3300000>;
@@ -80,7 +80,7 @@
 		};
 
 		en_vdd_cam: regulator@5 {
-			compatible = "regulator-fixed-sync";
+			compatible = "regulator-fixed-sync", "regulator-fixed";
 			reg = <5>;
 			regulator-name = "en-vdd-cam";
 			regulator-min-microvolt = <1800000>;
@@ -90,7 +90,7 @@
 		};
 
 		vdd_sys_boost: regulator@6 {
-			compatible = "regulator-fixed-sync";
+			compatible = "regulator-fixed-sync", "regulator-fixed";
 			reg = <6>;
 			regulator-name = "vdd-sys-boost";
 			regulator-min-microvolt = <5000000>;
@@ -101,7 +101,7 @@
 		};
 
 		vdd_hdmi: regulator@7 {
-			compatible = "regulator-fixed-sync";
+			compatible = "regulator-fixed-sync", "regulator-fixed";
 			reg = <7>;
 			regulator-name = "vdd-hdmi";
 			regulator-min-microvolt = <5000000>;
@@ -119,7 +119,7 @@
 		};
 
 		vdd_aux_3v3: regulator@9 {
-			compatible = "regulator-fixed-sync";
+			compatible = "regulator-fixed-sync", "regulator-fixed";
 			reg = <9>;
 			regulator-name = "aux-3v3";
 			regulator-min-microvolt = <3300000>;
@@ -127,7 +127,7 @@
 		};
 
 		vdd_snsr_pm: regulator@10 {
-			compatible = "regulator-fixed-sync";
+			compatible = "regulator-fixed-sync", "regulator-fixed";
 			reg = <10>;
 			regulator-name = "snsr_pm";
 			enable-active-high;
@@ -136,7 +136,7 @@
 		};
 
 		vdd_usb_5v0: regulator@11 {
-			compatible = "regulator-fixed-sync";
+			compatible = "regulator-fixed-sync", "regulator-fixed";
 			reg = <11>;
 			status = "disabled";
 			regulator-name = "vdd-usb-5v0";
@@ -148,7 +148,7 @@
 		};
 
 		vdd_cdc_1v2_aud: regulator@101 {
-			compatible = "regulator-fixed-sync";
+			compatible = "regulator-fixed-sync", "regulator-fixed";
 			reg = <101>;
 			status = "disabled";
 			regulator-name = "vdd_cdc_1v2_aud";
@@ -159,7 +159,7 @@
 		};
 
 		vdd_disp_3v0: regulator@12 {
-			compatible = "regulator-fixed-sync";
+			compatible = "regulator-fixed-sync", "regulator-fixed";
 			reg = <12>;
 			regulator-name = "vdd-disp-3v0";
 			regulator-min-microvolt = <3000000>;
@@ -171,7 +171,7 @@
 		};
 
 		vdd_fan: regulator@13 {
-			compatible = "regulator-fixed-sync";
+			compatible = "regulator-fixed-sync", "regulator-fixed";
 			reg = <13>;
 			regulator-name = "vdd-fan";
 			regulator-min-microvolt = <5000000>;
@@ -182,7 +182,7 @@
 		};
 
 		usb_vbus1: regulator@14 {
-			compatible = "regulator-fixed-sync";
+			compatible = "regulator-fixed-sync", "regulator-fixed";
 			reg = <14>;
 			regulator-name = "usb-vbus1";
 			regulator-min-microvolt = <5000000>;
@@ -194,7 +194,7 @@
 		};
 
 		en_vdd_eth_5v0: regulator@207 {
-			compatible = "regulator-fixed-sync";
+			compatible = "regulator-fixed-sync", "regulator-fixed";
 			reg = <207>;
 			regulator-name = "rtl-5v0";
 			regulator-min-microvolt = <5000000>;
