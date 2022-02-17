@@ -789,7 +789,7 @@
 		status = "ok";
 	};
 
-	thermal-fan-est {
+	thermal_fan_est {
 		compatible = "thermal-fan-est";
 		active_trip_temps = <0 51000 61000 71000 82000
 				140000 150000 160000 170000 180000>;
