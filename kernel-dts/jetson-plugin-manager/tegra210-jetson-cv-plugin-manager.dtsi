@@ -17,7 +17,7 @@
 		fragement@0 {
 			ids = ">=2180-1000-300";
 			override@0 {
-				target = <&ina3221x>;
+				target = <&ina3221>;
 				_overlay_ {
 					status = "okay";
 				};

@@ -17,12 +17,9 @@
 
 / {
 	i2c@7000c400 {
-		ina3221x@42 {
-			compatible = "ti,ina3221x";
+		ina3221@42 {
+			compatible = "ti,ina3221";
 			reg = <0x42>;
-			ti,trigger-config = <0x7003>;
-			ti,continuous-config = <0x7607>;
-			ti,enable-forced-continuous;
 			#io-channel-cells = <1>;
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -30,28 +27,25 @@
 
 			channel@0 {
 				reg = <0x0>;
-				ti,rail-name = "VDD_MUX";
-				ti,shunt-resistor-mohm = <20>;
+				label = "VDD_MUX";
+				shunt-resistor-micro-ohms = <20000>;
 			};
 
 			channel@1 {
 				reg = <0x1>;
-				ti,rail-name = "VDD_5V_IO_SYS";
-				ti,shunt-resistor-mohm = <5>;
+				label = "VDD_5V_IO_SYS";
+				shunt-resistor-micro-ohms = <5000>;
 			};
 
 			channel@2 {
 				reg = <0x2>;
-				ti,rail-name = "VDD_3V3_SYS";
-				ti,shunt-resistor-mohm = <10>;
+				label = "VDD_3V3_SYS";
+				shunt-resistor-micro-ohms = <10000>;
 			};
 		};
-		ina3221x@43 {
-			compatible = "ti,ina3221x";
+		ina3221@43 {
+			compatible = "ti,ina3221";
 			reg = <0x43>;
-			ti,trigger-config = <0x7003>;
-			ti,continuous-config = <0x7607>;
-			ti,enable-forced-continuous;
 			#io-channel-cells = <1>;
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -59,20 +53,20 @@
 
 			channel@0 {
 				reg = <0x0>;
-				ti,rail-name = "VDD_3V3_IO";
-				ti,shunt-resistor-mohm = <10>;
+				label = "VDD_3V3_IO";
+				shunt-resistor-micro-ohms = <10000>;
 			};
 
 			channel@1 {
 				reg = <0x1>;
-				ti,rail-name = "VDD_1V8_IO";
-				ti,shunt-resistor-mohm = <10>;
+				label = "VDD_1V8_IO";
+				shunt-resistor-micro-ohms = <10000>;
 			};
 
 			channel@2 {
 				reg = <0x2>;
-				ti,rail-name = "VDD_M2_IN";
-				ti,shunt-resistor-mohm = <10>;
+				label = "VDD_M2_IN";
+				shunt-resistor-micro-ohms = <10000>;
 			};
 		};
 	};
