@@ -48,6 +48,7 @@
 #include "jetson-plugin-manager/tegra210-jetson-cv-eeprom-manager.dtsi"
 #include "jetson-plugin-manager/tegra210-jetson-cv-camera-plugin-manager.dtsi"
 #include "jetson-plugin-manager/tegra210-jetson-cv-plugin-manager.dtsi"
+#include <audio/tegra210-audio-dai-links.dtsi>
 
 / {
 	model = "jetson_cv";
@@ -125,6 +126,10 @@
 		status = "okay";
 	};
 
+	adsp_audio {
+		status = "disabled";
+	};
+
 	ahub {
 		i2s@702d1000 {
 			pinctrl-names = "dap_active", "dap_inactive";
@@ -157,7 +162,6 @@
 			regulator-supplies = "vdd-1v8-spi-hv", "vdd-1v8-spi-hv-bias";
 			vdd-1v8-spi-hv-supply = <&max77620_sd3>;
 			vdd-1v8-spi-hv-bias-supply = <&max77620_sd3>;
-			fsync-width = <0>;
 			bclk-ratio = <4>;
 		};
 
@@ -366,7 +370,7 @@
 
 	tegra_sound: sound {
 		compatible = "nvidia,tegra-audio-t210ref-mobile-rt565x";
-		nvidia,model = "tegra-snd-t210ref-mobile-rt565x";
+		nvidia-audio-card,name = "tegra-snd-t210ref-mobile-rt565x";
 
 		clocks = <&tegra_car TEGRA210_CLK_PLL_A>,
 			 <&tegra_car TEGRA210_CLK_PLL_A_OUT0>,
@@ -378,128 +382,7 @@
 		assigned-clock-parents = <&tegra_car TEGRA210_CLK_PLL_A_OUT0>;
 		assigned-clock-rates = <12288000>, <49152000>, <368640000>;
 
-		nvidia,num-codec-link = <8>;
-
-		nvidia,audio-routing =
-			"x Headphone",		"x OUT",
-			"x IN",			"x Mic",
-			"y Headphone",		"y OUT",
-			"y IN",			"y Mic",
-			"l Headphone",		"l OUT",
-			"l IN",			"l Mic",
-			"s Headphone",		"s OUT",
-			"s IN",			"s Mic",
-			"w Headphone",		"w OUT",
-			"w IN",			"w Mic",
-			"z IN",			"z Mic",
-			"m IN",			"m Mic",
-			"n IN",			"n Mic";
-
-		nvidia,xbar = <&tegra_axbar>;
-		mclk-fs = <256>;
-
-		hdr40_snd_link_i2s: nvidia,dai-link-1 {
-			link-name = "spdif-dit-0";
-			cpu-dai = <&tegra_i2s1>;
-			codec-dai = <&spdif_dit4>;
-			cpu-dai-name = "I2S1";
-			codec-dai-name = "dit-hifi";
-			format = "i2s";
-			bit-format = "s16_le";
-			srate = <48000>;
-			num-channel = <2>;
-			name-prefix = "x";
-		};
-
-		nvidia,dai-link-2 {
-			link-name = "spdif-dit-1";
-			cpu-dai = <&tegra_i2s2>;
-			codec-dai = <&spdif_dit1>;
-			cpu-dai-name = "I2S2";
-			codec-dai-name = "dit-hifi";
-			format = "dsp_a";
-			bitclock-inversion;
-			bit-format = "s16_le";
-			srate = <8000>;
-			num-channel = <1>;
-			name-prefix = "y";
-		};
-
-		nvidia,dai-link-3 {
-			link-name = "spdif-dit-2";
-			cpu-dai = <&tegra_dmic3>;
-			codec-dai = <&spdif_dit2>;
-			cpu-dai-name = "DMIC3";
-			codec-dai-name = "dit-hifi";
-			format = "i2s";
-			bit-format = "s16_le";
-			srate = <48000>;
-			num-channel = <2>;
-			name-prefix = "z";
-		};
-
-		nvidia,dai-link-4 {
-			link-name = "spdif-dit-3";
-			cpu-dai = <&tegra_i2s3>;
-			codec-dai = <&spdif_dit3>;
-			cpu-dai-name = "I2S3";
-			codec-dai-name = "dit-hifi";
-			format = "i2s";
-			bit-format = "s16_le";
-			srate = <48000>;
-			num-channel = <2>;
-			name-prefix = "l";
-		};
-
-		nvidia,dai-link-5 {
-			link-name = "spdif-dit-4";
-			cpu-dai = <&tegra_i2s4>;
-			codec-dai = <&spdif_dit0>;
-			cpu-dai-name = "I2S4";
-			codec-dai-name = "dit-hifi";
-			format = "i2s";
-			bit-format = "s16_le";
-			srate = <48000>;
-			num-channel = <2>;
-			name-prefix = "s";
-		};
-
-		nvidia,dai-link-6 {
-			link-name = "spdif-dit-5";
-			cpu-dai = <&tegra_i2s5>;
-			codec-dai = <&spdif_dit5>;
-			cpu-dai-name = "I2S5";
-			codec-dai-name = "dit-hifi";
-			format = "i2s";
-			bit-format = "s16_le";
-			srate = <48000>;
-			num-channel = <2>;
-			name-prefix = "w";
-		};
-		nvidia,dai-link-7 {
-			link-name = "spdif-dit-6";
-			cpu-dai = <&tegra_dmic1>;
-			codec-dai = <&spdif_dit6>;
-			cpu-dai-name = "DMIC1";
-			codec-dai-name = "dit-hifi";
-			format = "i2s";
-			bit-format = "s16_le";
-			srate = <48000>;
-			num-channel = <2>;
-			name-prefix = "m";
-		};
-		nvidia,dai-link-8 {
-			link-name = "spdif-dit-7";
-			cpu-dai = <&tegra_dmic2>;
-			codec-dai = <&spdif_dit7>;
-			cpu-dai-name = "DMIC2";
-			codec-dai-name = "dit-hifi";
-			format = "i2s";
-			bit-format = "s16_le";
-			srate = <48000>;
-			num-channel = <2>;
-			name-prefix = "n";
-		};
+		nvidia-audio-card,mclk-fs = <256>;
 	};
 
 #if TEGRA_AUDIO_BUS_DT_VERSION >= DT_VERSION_2
@@ -1160,4 +1043,9 @@
 	gpu_alert: gpu-throttle-alert {
 		status = "okay";
 	};
+};
+
+&i2s2_to_codec {
+	format = "dsp_a";
+	bitclock-inversion;
 };

@@ -44,6 +44,7 @@
 #include <t210-common-platforms/tegra210-cpufreq.dtsi>
 #include <dt-bindings/gpio/tegra-gpio.h>
 #include <dt-bindings/input/input.h>
+#include <audio/tegra210-audio-dai-links.dtsi>
 
 / {
 	model = "jetson_e";
@@ -117,6 +118,10 @@
 		status = "okay";
 	};
 
+	adsp_audio {
+		status = "disabled";
+	};
+
 	ahub {
 		i2s@702d1000 {
 			pinctrl-names = "dap_active", "dap_inactive";
@@ -142,7 +147,6 @@
 			regulator-supplies = "vdd-1v8-spi-hv", "vdd-1v8-spi-hv-bias";
 			vdd-1v8-spi-hv-supply = <&max77620_sd3>;
 			vdd-1v8-spi-hv-bias-supply = <&max77620_sd3>;
-			fsync-width = <0>;
 			bclk-ratio = <4>;
 		};
 	};
@@ -370,7 +374,7 @@
 
 	sound_card: sound {
 		compatible = "nvidia,tegra-audio-t210ref-mobile-rt5639";
-		nvidia,model = "tegra-snd-t210ref-mobile-rt5639";
+		nvidia-audio-card,name = "tegra-snd-t210ref-mobile-rt5639";
 		nvidia,ldo-gpios = <&gpio TEGRA_GPIO(BB, 3) GPIO_ACTIVE_HIGH>;
 		nvidia,hp-det-gpios = <&gpio TEGRA_GPIO(E, 6) GPIO_ACTIVE_HIGH>;
 
@@ -381,66 +385,7 @@
 		assigned-clocks = <&tegra_car TEGRA210_CLK_EXTERN1>;
 		assigned-clock-parents = <&tegra_car TEGRA210_CLK_PLL_A_OUT0>;
 
-		nvidia,num-codec-link = <3>;
-
-		nvidia,audio-routing =
-			"x Headphone Jack", 	"x HPOL",
-			"x Headphone Jack", 	"x HPOR",
-			"x Int Spk", 	"x SPORP",
-			"x Int Spk", 	"x SPORN",
-			"x Int Spk", 	"x SPOLP",
-			"x Int Spk", 	"x SPOLN",
-			"x Mic Jack",   "x MICBIAS1",
-			"x IN2P",		"x Mic Jack",
-			"x IN2P",		"x Mic Jack",
-			"x DMIC L1",	"x Int Mic",
-			"x DMIC L2",	"x Int Mic",
-			"x DMIC R1",	"x Int Mic",
-			"x DMIC R2",	"x Int Mic",
-			"y Headphone", 	"y OUT",
-			"y IN",		"y Mic",
-			"z IN",		"z OUT";
-
-		nvidia,xbar = <&tegra_axbar>;
-		mclk-fs = <256>;
-
-		nvidia,dai-link-1 {
-			link-name = "rt5640-playback";
-			cpu-dai = <&tegra_i2s1>;
-			codec-dai = <&rt5640>;
-			cpu-dai-name = "I2S1";
-			codec-dai-name = "rt5640-aif1";
-			format = "i2s";
-			bit-format = "s16_le";
-			srate = <48000>;
-			num-channel = <2>;
-			name-prefix = "x";
-		};
-		nvidia,dai-link-2 {
-			link-name = "spdif-dit-1";
-			cpu-dai = <&tegra_i2s2>;
-			codec-dai = <&spdif_dit1>;
-			cpu-dai-name = "I2S2";
-			codec-dai-name = "dit-hifi";
-			format = "dsp_a";
-			bitclock-inversion;
-			bit-format = "s16_le";
-			srate = <8000>;
-			num-channel = <1>;
-			name-prefix = "y";
-		};
-		nvidia,dai-link-3 {
-			link-name = "spdif-dit-3";
-			cpu-dai = <&tegra_i2s3>;
-			codec-dai = <&spdif_dit3>;
-			cpu-dai-name = "I2S3";
-			codec-dai-name = "dit-hifi";
-			format = "i2s";
-			bit-format = "s16_le";
-			srate = <48000>;
-			num-channel = <2>;
-			name-prefix = "z";
-		};
+		nvidia-audio-card,mclk-fs = <256>;
 	};
 
 	adsp_audio {
@@ -1018,4 +963,9 @@
 		nvidia,ci = <0>;
 		nvidia,cg = <2>;
         };
+};
+
+&i2s2_to_codec {
+	format = "dsp_a";
+	bitclock-inversion;
 };
