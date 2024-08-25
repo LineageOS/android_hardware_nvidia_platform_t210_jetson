@@ -1,0 +1,136 @@
+/*
+ * arch/arm64/boot/dts/tegra210-jetson-cv-p2597-2180-a00.dts
+ *
+ * Copyright (c) 2024 The LineageOS Project
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ */
+
+#include "tegra210-jetson-tx1-p2597-2180-a01-android-devkit.dts"
+
+/ {
+	nvidia,dtsfilename = __FILE__;
+
+	chosen {
+		bootargs = "earlycon=uart8250,mmio32,0x70006000 androidboot.boot_devices=sdhci-tegra.3 nvdec_enabled=0";
+		fastboot-instructions = "Press power to select, volume up/down for selection move\n";
+		no-tnid-sn;
+		nvidia,fastboot_without_usb;
+	};
+
+	firmware {
+		android {
+			hardware = "baracus";
+		};
+	};
+
+	host1x@50000000 {
+		dc@54200000 {
+			status = "okay";
+			nvidia,dc-or-node = "/host1x/sor1";
+			nvidia,dc-connector = <&sor1>;
+			win-mask = <0xf>;
+			avdd_hdmi-supply = <&max77620_ldo8>;
+			avdd_hdmi_pll-supply = <&max77620_sd3>;
+			vdd_hdmi_5v0-supply = <&vdd_hdmi>;
+		};
+
+		dc@54240000 {
+			status = "disabled";
+		};
+
+		sor1 {
+			hdmi-display {
+				disp-default-out {
+					nvidia,out-hdcp-policy = <TEGRA_DC_HDCP_POLICY_ALWAYS_OFF>;
+				};
+			};
+		};
+	};
+
+	hazelred {
+		compatible = "rapt,powerseq";
+		reset-gpios = <&gpio TEGRA_GPIO(X, 1) GPIO_ACTIVE_LOW>;
+		status = "okay";
+		v12-gpios = <&gpio TEGRA_GPIO(V, 6) GPIO_ACTIVE_HIGH>;
+		vbus-gpios = <&gpio TEGRA_GPIO(X, 0) GPIO_ACTIVE_HIGH>;
+	};
+
+	i2c@7000c000 {
+		pn544.0-0028@28 {
+			reg = <0x28>;
+			compatible = "nxp,pn544";
+			enable-gpios = <&gpio TEGRA_GPIO(I, 0) GPIO_ACTIVE_HIGH>;
+			firmware-gpios = <&gpio TEGRA_GPIO(K, 5) GPIO_ACTIVE_HIGH>;
+			interrupt-gpios = <&gpio TEGRA_GPIO(I, 1) GPIO_ACTIVE_HIGH>;
+		};
+	};
+
+	i2c@7000d000 {
+		max77620@3c {
+			regulators {
+				ldo8 {
+					regulator-always-on;
+				};
+			};
+		};
+	};
+
+	pinctrl@7009f000 {
+		pinmux {
+			usb2-touch {
+				nvidia,lanes = "otg-3";
+				nvidia,function = "xusb";
+				nvidia,port-cap =
+					<TEGRA_PADCTL_PORT_HOST_ONLY>;
+				nvidia,usb3-port-fake = <2>;
+			};
+		};
+	};
+
+	pmc@7000e400 {
+		/delete-property/ nvidia,secure-pmc;
+	};
+
+	pwm-leds {
+		compatible = "pwm-leds";
+		status = "okay";
+
+		front-led {
+			label = "mrt:white:front";
+			max-brightness = <255>;
+			pwms = <&tegra_pwm 3 1000000>;
+		};
+	};
+
+	regulators {
+		regulator@7 {
+			regulator-always-on;
+			regulator-boot-on;
+			/delete-property/ gpio;
+			/delete-property/ enable-active-high;
+		};
+	};
+
+	spi@7000da00 {
+		status = "disabled";
+	};
+
+	xusb@70090000 {
+		phys = <&{/xusb_padctl@7009f000/pads/usb2/lanes/usb2-0}>,
+		       <&{/xusb_padctl@7009f000/pads/usb2/lanes/usb2-1}>,
+		       <&{/xusb_padctl@7009f000/pads/usb2/lanes/usb2-2}>,
+		       <&{/xusb_padctl@7009f000/pads/usb2/lanes/usb2-3}>,
+		       <&{/xusb_padctl@7009f000/pads/pcie/lanes/pcie-6}>,
+		       <&{/xusb_padctl@7009f000/pads/pcie/lanes/pcie-5}>;
+		phy-names = "usb2-0", "usb2-1", "usb2-2", "usb2-3", "usb3-0", "usb3-1";
+	};
+};

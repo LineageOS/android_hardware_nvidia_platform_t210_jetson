@@ -4,6 +4,7 @@ dtb-y :=
 dtbo-y :=
 makefile-path := platform/t210/jetson/kernel-dts
 
+dtb-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-baracus.dtb
 dtb-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-jetson-cv-base-p2597-2180-a00.dtb
 dtb-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-jetson-cv-p2597-2180-a00.dtb
 dtb-$(CONFIG_ARCH_TEGRA_210_SOC) += tegra210-jetson-cv-p2597-2180-imx274-hdmi.dtb
