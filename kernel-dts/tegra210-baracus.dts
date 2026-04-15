@@ -100,6 +100,11 @@
 		/delete-property/ nvidia,secure-pmc;
 	};
 
+	scaler-backlight {
+		compatible = "jamboard,scaler-backlight";
+		status = "okay";
+	};
+
 	pwm-leds {
 		compatible = "pwm-leds";
 		status = "okay";
